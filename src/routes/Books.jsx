@@ -17,6 +17,53 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
+// TODO: Implement search functionality
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  border: "1px solid gray",
+  "&:hover, &:focus-within": {
+    borderColor: theme.palette.primary.main,
+  },
+  margin: theme.spacing(2, 0),
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "auto",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  width: "100%",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    [theme.breakpoints.up("sm")]: {
+      width: "100%",
+      "&:focus": {
+        width: "30ch",
+      },
+    },
+  },
+}));
+
 function Books() {
   // const [books, setBooks] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
@@ -28,11 +75,36 @@ function Books() {
   //loading, a boolean that indicates whether the request is in progress
   //error, an object that stores any error that occurs
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredBooks, setFilteredBooks] = useState([]);
+
+  // console.log(searchQuery);
+  console.log(filteredBooks);
+
+  useEffect(() => {
+    if (books) {
+      const filtered = books.filter(
+        (book) =>
+          book.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (book.genres &&
+            book.genres.some((genre) =>
+              genre.toLowerCase().includes(searchQuery.toLowerCase())
+            ))
+      );
+      setFilteredBooks(filtered);
+    }
+  }, [books, searchQuery]);
+
   useEffect(() => {
     if (error) {
       console.error("Error fetching books:", error);
     }
   }, [error]);
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   // useEffect(() => {
   //   if (books.length === 0) {
@@ -51,53 +123,6 @@ function Books() {
   //   }
   // }
 
-  // TODO: Implement search functionality
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    border: "1px solid gray",
-    "&:hover, &:focus-within": {
-      borderColor: theme.palette.primary.main,
-    },
-    margin: theme.spacing(2, 0),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  }));
-
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    width: "100%",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      [theme.breakpoints.up("sm")]: {
-        width: "100%",
-        "&:focus": {
-          width: "30ch",
-        },
-      },
-    },
-  }));
-
   return (
     <Box
       sx={{
@@ -114,6 +139,8 @@ function Books() {
         <StyledInputBase
           placeholder="Search book…"
           inputProps={{ "aria-label": "search" }}
+          value={searchQuery}
+          onChange={handleSearchChange}
         />
       </Search>
       {loading ? (
@@ -126,7 +153,7 @@ function Books() {
             direction="row"
             useFlexGap
             flexWrap="wrap">
-            {books.map((book) => (
+            {filteredBooks.map((book) => (
               <Card
                 sx={{
                   display: "flex",
