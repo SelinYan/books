@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const useAxios = (baseUrl) => {
   const [data, setData] = useState(null);
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
   const [loading, setLoading] = useState(false);
-  const alertTimeoutRef = useRef(null);
 
   const showAlert = (message, type) => {
     setAlert({ show: true, message, type });

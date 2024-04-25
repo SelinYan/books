@@ -13,6 +13,9 @@ import useAxios from "../services/useAxios";
 import { bookGenres } from "../genres";
 import { Stack, Typography } from "@mui/material";
 
+const defaultImageUrl =
+  "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
 function AddBook() {
   const { alert, post } = useAxios("http://localhost:3000");
   const [rateValue, setRateValue] = useState(3);
@@ -24,6 +27,7 @@ function AddBook() {
     start: null,
     end: null,
     stars: null,
+    img: defaultImageUrl,
   });
 
   const genreChangeHandler = (event) => {
@@ -47,13 +51,19 @@ function AddBook() {
     if (type === "checkbox" && name === "completed") {
       setBook({ ...book, [name]: checked });
     } else {
-      setBook({ ...book, [name]: value });
+      setBook({
+        ...book,
+        [name]: value || (name === "img" ? defaultImageUrl : ""),
+      });
     }
   };
 
   function postHandler(e) {
     // Prevent the default form submit behavior
     e.preventDefault();
+    if (!book.img) {
+      setBook((prevBook) => ({ ...prevBook, img: defaultImageUrl }));
+    }
     post("books", book);
   }
 

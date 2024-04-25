@@ -17,6 +17,9 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
+const defaultImageUrl =
+  "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
 // TODO: Implement search functionality
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -165,8 +168,11 @@ function Books() {
                 <CardMedia
                   component="img"
                   sx={{ height: 250, objectFit: "cover" }}
-                  image={book.img}
+                  image={book.img ? book.img : defaultImageUrl}
                   title={book.name}
+                  onError={(e) => {
+                    e.target.src = defaultImageUrl;
+                  }}
                 />
                 <Box sx={{ pt: 2, pl: 2 }}>
                   {book.genres.map((genre, i) => (
