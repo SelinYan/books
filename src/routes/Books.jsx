@@ -79,7 +79,7 @@ function Books() {
   const [filteredBooks, setFilteredBooks] = useState([]);
 
   // console.log(searchQuery);
-  console.log(filteredBooks);
+  // console.log(filteredBooks);
 
   useEffect(() => {
     if (books) {
@@ -148,7 +148,7 @@ function Books() {
       ) : (
         <div>
           <Stack
-            sx={{ justifyContent: "space-around" }}
+            sx={{ justifyContent: "space-between" }}
             spacing={{ xs: 1 }}
             direction="row"
             useFlexGap
@@ -163,7 +163,8 @@ function Books() {
                 }}
                 key={book.name}>
                 <CardMedia
-                  sx={{ height: 250 }}
+                  component="img"
+                  sx={{ height: 250, objectFit: "cover" }}
                   image={book.img}
                   title={book.name}
                 />
