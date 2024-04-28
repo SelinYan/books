@@ -1,32 +1,66 @@
-# Books MVP
+**Book App**
 
-1. **Ticket #101 - Code Documentation Enhancement**
+Welcome to the Book App! This application allows users to explore a vast collection of books, read details about each book, and search book.
 
-   - **User Story**: As a developer, I want to have clear comments on each function, so that I can understand the codebase more quickly and maintain it efficiently.
-   - **Task**: Add descriptive comments to each function across the codebase to enhance readability and facilitate easier maintenance.
+**Features**
 
-2. **Ticket #102 - Refactor Books.js to Use Custom Hook**
+Browse Books: Explore a diverse selection of books covering various genres, authors, and topics.
+Search: Easily search for specific books by title, author, or genre.
+Book Details: View detailed information about each book, including its cover image, author, genres, description, and ratings.
+Interactive Experience: Enjoy a user-friendly interface that makes it easy to navigate through the app and discover new books.
+Responsive Design: Access the app seamlessly on desktop, tablet, and mobile devices.
 
-   - **User Story**: As a developer, I want to use the `useAxios` custom hook in `Books.js` to streamline HTTP requests, ensuring a consistent approach to data fetching.
-   - **Task**: Replace the current `axios.get` function in `Books.js` with the `useAxios` custom hook without altering the existing functionality.
+**Technologies Used**
 
-3. **Ticket #103 - Implement Search in Books.js**
+React: The app is built using React, a popular JavaScript library for building user interfaces.
+React Router: Utilized for handling navigation and routing within the application.
+Axios: Used for making HTTP requests to fetch book data from the server.
+Material-UI: Employed for designing the user interface with pre-built React components and styles.
+Lottie: Integrated for adding animations to enhance the user experience.
 
-   - **User Story**: As a user, I want to search for books by title, author, or genre, so that I can find specific books more easily in the application.
-   - **Task**: Add a search feature in `Books.js` to enable users to filter and find books based on various criteria.
+**Setup**
 
-4. **Ticket #104 - Fix Message Display Timing in AddBook.js**
+1. Clone the Repository: Clone the repository to your local machine using the following command:
 
-   - **User Story**: As a user, I want to clearly see success or error messages for a sufficient amount of time, so that I can understand the outcome of my actions.
-   - **Task**: Modify `AddBook.js` to ensure that success/error messages are displayed for the full 5000 milliseconds as defined in the `useAxios` hook.
+git clone <repository-url>
 
-5. **Ticket #105 - Image URL Fallback Implementation**
+2. Navigate to Project Directory: Change directory to the project folder:
 
-   - **User Story**: As a user, I want to see a default image for books where no image URL is provided, so that the user interface remains consistent and visually appealing.
-   - **Task**: Implement a check in `AddBook.js` to use a default image when a user does not provide an image URL.
+cd <project-folder>
 
-6. **Ticket #106 - Develop SinglePage Component**
-   - **6.1. User Story (Route and Links)**: As a user, I want to navigate to a detailed page for each book, so I can view more information about it.
-     - **Task**: Set up a new route and navigation links for the `SinglePage` component.
-   - **6.2. User Story (Styling Consistency)**: As a user, I expect the SinglePage component to have a consistent look and feel with the rest of the application for a seamless experience.
-     - **Task**: Use Material-UI for designing the `SinglePage` component, ensuring it aligns with the existing style of the application.
+3. Install Dependencies: Navigate to the project directory and install the dependencies using npm or yarn:
+
+npm install
+
+or
+
+yarn install
+
+4. Start the Local Server: Start the local server to serve the books data. Run the following command:
+
+npm run server
+
+This command will start a local server at http://localhost:3000/books to serve the books data.
+
+5. Start the Development Server: Run the following command to start the development server:
+
+npm run dev
+
+or
+
+yarn run dev
+
+6. Open the App: Once the localhost link is rendered, press command and click into the link to view the Book App.
+
+**Contributing**
+
+Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
+
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Make your changes and commit them with descriptive commit messages.
+Push your changes to your fork.
+Submit a pull request to the main repository.
+
+**License**
+This project is licensed under the MIT License. See the LICENSE file for details.
