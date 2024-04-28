@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import axios from "axios";
 import useAxios from "axios-hooks";
 import {
@@ -16,8 +17,9 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import ErrorPage from "./ErrorPage";
 
-const defaultImageUrl =
+export const defaultImageUrl =
   "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 // TODO: Implement search functionality
@@ -105,6 +107,14 @@ function Books() {
     }
   }, [error]);
 
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  if (error) {
+    return <ErrorPage />;
+  }
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -151,60 +161,70 @@ function Books() {
       ) : (
         <div>
           <Stack
-            sx={{ justifyContent: "space-between" }}
+            sx={{ justifyContent: "space-around" }}
             spacing={{ xs: 1 }}
             direction="row"
             useFlexGap
             flexWrap="wrap">
             {filteredBooks.map((book) => (
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "15%",
-                  minWidth: 200,
-                }}
-                key={book.name}>
-                <CardMedia
-                  component="img"
-                  sx={{ height: 250, objectFit: "cover" }}
-                  image={book.img ? book.img : defaultImageUrl}
-                  title={book.name}
-                  onError={(e) => {
-                    e.target.src = defaultImageUrl;
+              <Link
+                key={book.id}
+                to={`/book/${book.id}`}
+                style={{
+                  textDecoration: "none",
+                  width: "100%",
+                  maxWidth: "20%",
+                  margin: "10px",
+                }}>
+                <Card
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    height: "100%",
                   }}
-                />
-                <Box sx={{ pt: 2, pl: 2 }}>
-                  {book.genres.map((genre, i) => (
-                    <Chip
-                      key={i}
-                      label={genre}
-                      variant="outlined"
+                  key={book.name}>
+                  <CardMedia
+                    component="img"
+                    sx={{ height: 250, objectFit: "cover" }}
+                    image={book.img ? book.img : defaultImageUrl}
+                    title={book.name}
+                    onError={(e) => {
+                      e.target.src = defaultImageUrl;
+                    }}
+                  />
+                  <Box sx={{ pt: 2, pl: 2 }}>
+                    {book.genres.map((genre, i) => (
+                      <Chip
+                        key={i}
+                        label={genre}
+                        variant="outlined"
+                        size="small"
+                      />
+                    ))}
+                    <Typography variant="h6" component="h2" sx={{ mt: 2 }}>
+                      {book.name}
+                    </Typography>
+                    <Typography variant="subtitle1" gutterBottom>
+                      {book.author}
+                    </Typography>
+                  </Box>
+                  <CardActions
+                    sx={{
+                      justifyContent: "space-between",
+                      mt: "auto",
+                      pl: 2,
+                    }}>
+                    <Rating
+                      name="read-only"
+                      number={book.stars}
+                      readOnly
                       size="small"
                     />
-                  ))}
-                  <Typography variant="h6" component="h2" sx={{ mt: 2 }}>
-                    {book.name}
-                  </Typography>
-                  <Typography variant="subtitle1" gutterBottom>
-                    {book.author}
-                  </Typography>
-                </Box>
-                <CardActions
-                  sx={{
-                    justifyContent: "space-between",
-                    mt: "auto",
-                    pl: 2,
-                  }}>
-                  <Rating
-                    name="read-only"
-                    value={book.stars}
-                    readOnly
-                    size="small"
-                  />
-                  <Button size="small">Learn More</Button>
-                </CardActions>
-              </Card>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Link>
             ))}
           </Stack>
         </div>
