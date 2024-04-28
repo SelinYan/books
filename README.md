@@ -26,11 +26,11 @@ Lottie: Integrated for adding animations to enhance the user experience.
 
 1. Clone the Repository: Clone the repository to your local machine using the following command:
 
-git clone <repository-url>
+git clone repository-url
 
 2. Navigate to Project Directory: Change directory to the project folder:
 
-cd <project-folder>
+cd project-folder
 
 3. Install Dependencies: Navigate to the project directory and install the dependencies using npm or yarn:
 
