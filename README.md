@@ -1,4 +1,4 @@
-\*Book App
+# Book App
 
 Welcome to the Book App! This application allows users to explore a vast collection of books, read details about each book, and search book.
 
@@ -6,7 +6,7 @@ Demo: https://wen-books.netlify.app
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/892d8973-ba48-469a-b39a-4f8133d87043/deploy-status?branch=main)](https://app.netlify.com/sites/wen-bookapp/deploys)
 
-\*Features
+# Features
 
 - Browse Books: Explore a diverse selection of books covering various genres, authors, and topics.
 - Search: Easily search for specific books by title, author, or genre.
@@ -14,15 +14,19 @@ Demo: https://wen-books.netlify.app
 - Interactive Experience: Enjoy a user-friendly interface that makes it easy to navigate through the app and discover new books.
 - Responsive Design: Access the app seamlessly on desktop, tablet, and mobile devices.
 
-\*Technologies Used
+# Technologies Used
 
 - React: The app is built using React, a popular JavaScript library for building user interfaces.
+
 - React Router: Utilized for handling navigation and routing within the application.
+
 - Axios: Used for making HTTP requests to fetch book data from the server.
+
 - Material-UI: Employed for designing the user interface with pre-built React components and styles.
+
 - Lottie: Integrated for adding animations to enhance the user experience.
 
-\*Setup
+# Setup
 
 1. Clone the Repository: Clone the repository to your local machine using the following command:
 
@@ -56,15 +60,19 @@ or
 
 6. Open the App: Once the localhost link is rendered, press command and click into the link to view the Book App.
 
-\*Contributing
+# Contributing
 
 Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
 
-Fork the repository.
-Create a new branch for your feature or bug fix.
-Make your changes and commit them with descriptive commit messages.
-Push your changes to your fork.
-Submit a pull request to the main repository.
+- Fork the repository.
 
-\*License
+- Create a new branch for your feature or bug fix.
+  Make your changes and commit them with descriptive commit messages.
+
+- Push your changes to your fork.
+
+- Submit a pull request to the main repository.
+
+# License
+
 This project is licensed under the MIT License. See the LICENSE file for details.
