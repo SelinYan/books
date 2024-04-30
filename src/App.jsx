@@ -20,6 +20,8 @@ const theme = createTheme({
 });
 
 function App() {
+  const basename = import.meta.env.DEV ? "/" : "/books/";
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -36,7 +38,7 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ThemeProvider theme={theme}>
-        <RouterProvider router={router}></RouterProvider>
+        <RouterProvider router={router} basename={basename}></RouterProvider>
       </ThemeProvider>
     </LocalizationProvider>
   );
