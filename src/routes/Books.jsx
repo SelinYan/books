@@ -75,7 +75,7 @@ function Books() {
 
   //'axios-hooks' library, designed to make Axios requests simpler with built-in state management for loading, response, and error
   const [{ data: books, loading, error }] = useAxios(
-    "http://localhost:3000/books"
+    "https://selinyan.github.io/books_API/books.json"
   );
   //loading, a boolean that indicates whether the request is in progress
   //error, an object that stores any error that occurs
