@@ -18,7 +18,7 @@ function Book() {
   const { bookId } = useParams();
 
   const [{ data: book, loading, error }] = useAxios(
-    `https://selinyan.github.io/books_API/books.json/${bookId}`
+    `http://localhost:3000/books/${bookId}`
   );
 
   useEffect(() => {

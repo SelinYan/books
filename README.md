@@ -2,10 +2,6 @@
 
 Welcome to the Book App! This application allows users to explore a vast collection of books, read details about each book, and search book.
 
-Demo: https://wen-books.netlify.app
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/892d8973-ba48-469a-b39a-4f8133d87043/deploy-status?branch=main)](https://app.netlify.com/sites/wen-bookapp/deploys)
-
 # Features
 
 - Browse Books: Explore a diverse selection of books covering various genres, authors, and topics.

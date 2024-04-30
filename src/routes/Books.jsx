@@ -75,7 +75,7 @@ function Books() {
 
   //'axios-hooks' library, designed to make Axios requests simpler with built-in state management for loading, response, and error
   const [{ data: books, loading, error }] = useAxios(
-    "https://selinyan.github.io/books_API/books.json"
+    "http://localhost:3000/books"
   );
   //loading, a boolean that indicates whether the request is in progress
   //error, an object that stores any error that occurs
@@ -172,9 +172,8 @@ function Books() {
                 to={`/book/${book.id}`}
                 style={{
                   textDecoration: "none",
-                  width: "100%",
-                  maxWidth: "20%",
-                  margin: "10px",
+                  width: "250px",
+                  margin: "5px",
                 }}>
                 <Card
                   sx={{
